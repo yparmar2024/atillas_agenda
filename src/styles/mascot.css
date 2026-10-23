@@ -1,0 +1,36 @@
+.duck {
+  width: 165px;
+  position: relative;
+}
+.duck svg {
+  width: 100%;
+  display: block;
+  overflow: visible;
+}
+.duck-studying .duck-body {
+  transform-origin: 50% 90%;
+}
+.duck-walking .duck-body {
+  animation: waddle 0.6s ease-in-out infinite;
+}
+.duck-celebrating .duck-body {
+  animation: jump 0.55s ease-in-out 4;
+}
+.roaming {
+  animation: roam 22s ease-in-out infinite alternate;
+}
+@keyframes waddle {
+  50% {
+    transform: translateY(-4px) rotate(3deg);
+  }
+}
+@keyframes jump {
+  50% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+}
+@keyframes roam {
+  to {
+    left: 68%;
+  }
+}
