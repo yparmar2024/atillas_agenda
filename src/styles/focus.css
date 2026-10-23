@@ -1,0 +1,215 @@
+.focus-scene {
+  height: 550px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background: var(--blue);
+  transition: background 0.6s;
+}
+.scene-sun {
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: #f5d47f;
+  right: 12%;
+  top: 75px;
+}
+.cloud {
+  position: absolute;
+  width: 160px;
+  height: 33px;
+  border-radius: 50%;
+  background: #f5f6f8a8;
+}
+.cloud-one {
+  top: 150px;
+  left: 4%;
+}
+.cloud-two {
+  top: 84px;
+  left: 36%;
+  width: 95px;
+}
+.hill {
+  position: absolute;
+  bottom: -170px;
+  left: -20%;
+  width: 130%;
+  height: 330px;
+  border-radius: 50% 50% 0 0;
+  background: #708975;
+  transform: rotate(7deg);
+}
+.hill-back {
+  background: #99b29b;
+  left: 25%;
+  bottom: -100px;
+  transform: rotate(-12deg);
+}
+.scene-controls {
+  position: absolute;
+  top: 25px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #405b6b;
+}
+.scene-controls button {
+  width: 36px;
+  height: 36px;
+  background: #ffffff7a;
+  color: #405b6b;
+  border-radius: 50%;
+}
+.timer-card {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 360px;
+  margin: 88px auto 0;
+}
+.eyebrow {
+  font-size: 14px;
+  color: #446374;
+}
+.presets {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 24px 0 2px;
+}
+.presets button {
+  padding: 7px 16px;
+  border-radius: 4px;
+  background: transparent;
+  color: #486574;
+  font-size: 13px;
+}
+.presets .selected {
+  background: #fffdf4;
+  color: var(--ink);
+}
+.time {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 112px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  color: #243f50;
+}
+.time > span {
+  opacity: 0.5;
+  margin: 0 3px;
+}
+.timer-card > p {
+  font-size: 13px;
+  color: #486574;
+  margin: 14px 0 25px;
+}
+.timer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.timer-actions .primary {
+  min-width: 164px;
+}
+.reset {
+  width: 44px;
+  background: #ffffff80;
+  color: #405b6b;
+  border-radius: 5px;
+}
+.scene-duck {
+  position: absolute;
+  width: 135px;
+  bottom: 29px;
+  left: 10%;
+  z-index: 3;
+}
+.scene-duck .duck {
+  width: 100%;
+}
+.grass {
+  position: absolute;
+  color: #425f4a;
+  font-size: 32px;
+  bottom: 30px;
+  left: 43%;
+}
+.grass-two {
+  left: 80%;
+  bottom: 65px;
+  font-size: 23px;
+}
+.scene-caption {
+  display: none;
+}
+.night {
+  background: #344c65;
+}
+.night .hill-front {
+  background: #3a594d;
+}
+.night .hill-back {
+  background: #5d776a;
+}
+.night .scene-sun {
+  background: #f1e3b7;
+}
+.night .time,
+.night .eyebrow,
+.night .timer-card > p,
+.night .scene-controls,
+.night .presets button {
+  color: #f3f6f9;
+}
+.night .presets .selected {
+  color: var(--ink);
+}
+.focus-bottom {
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  color: #697788;
+}
+.focus-bottom span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .focus-scene {
+    height: 540px;
+  }
+  .timer-card {
+    width: 100%;
+    margin-top: 100px;
+  }
+  .time {
+    font-size: 103px;
+  }
+  .scene-duck {
+    width: 110px;
+    bottom: 25px;
+  }
+  .focus-bottom {
+    font-size: 12px;
+    align-items: flex-start;
+  }
+  .focus-bottom span {
+    max-width: 50%;
+  }
+  .scene-sun {
+    right: 8%;
+    width: 58px;
+    height: 58px;
+  }
+}
