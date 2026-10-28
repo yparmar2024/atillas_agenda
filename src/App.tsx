@@ -36,7 +36,7 @@ export function App() {
   const closeDialog = useCallback(() => setModal(false), []);
   useEffect(() => {
     if (!celebrate) return;
-    const timeout = setTimeout(() => setCelebrate(false), 2500);
+    const timeout = setTimeout(() => setCelebrate(false), 3600);
     return () => clearTimeout(timeout);
   }, [celebrate]);
   useEffect(() => {

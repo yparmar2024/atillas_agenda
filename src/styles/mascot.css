@@ -7,30 +7,223 @@
   display: block;
   overflow: visible;
 }
-.duck-studying .duck-body {
-  transform-origin: 50% 90%;
+.duck-body {
+  transform-origin: 110px 183px;
+  animation: duck-breathe 3.2s ease-in-out infinite;
+}
+.duck-head {
+  transform-origin: 116px 105px;
+  animation: duck-look 7s ease-in-out infinite;
+}
+.duck-eye {
+  transform-origin: 143px 56px;
+  animation: duck-blink 5.7s infinite;
+}
+.duck-wing-front {
+  transform-origin: 79px 121px;
+}
+.duck-wing-back {
+  transform-origin: 150px 120px;
+}
+.duck-foot-left {
+  transform-origin: 99px 178px;
+}
+.duck-foot-right {
+  transform-origin: 136px 178px;
 }
 .duck-walking .duck-body {
-  animation: waddle 0.6s ease-in-out infinite;
+  animation: duck-step-bob 0.72s ease-in-out infinite;
+}
+.duck-walking .duck-foot-left {
+  animation: duck-step 0.72s ease-in-out infinite;
+}
+.duck-walking .duck-foot-right {
+  animation: duck-step 0.72s ease-in-out -0.36s infinite;
+}
+.duck-walking .duck-wing-front {
+  animation: duck-wing-swing 0.72s ease-in-out infinite;
+}
+.duck-walking .duck-wing-back {
+  animation: duck-wing-swing 0.72s ease-in-out -0.36s infinite;
+}
+.duck-studying .duck-head {
+  animation: duck-read 4.5s ease-in-out infinite;
+}
+.duck-book {
+  transform-origin: 108px 178px;
+  animation: duck-book-sway 3.2s ease-in-out infinite;
+}
+.duck-page {
+  transform-origin: 109px 157px;
+  animation: duck-page-turn 9s ease-in-out infinite;
 }
 .duck-celebrating .duck-body {
-  animation: jump 0.55s ease-in-out 4;
+  animation: duck-cheer 0.85s ease-in-out 0.7s 3;
+}
+.duck-celebrating .duck-wing-front {
+  animation: duck-flap 0.42s ease-in-out 0.7s 6;
+}
+.duck-celebrating .duck-wing-back {
+  animation: duck-flap 0.42s ease-in-out 0.8s 6 reverse;
+}
+.duck-celebrating .duck-head {
+  animation: duck-happy 0.85s ease-in-out 0.7s 3;
+}
+.duck-book-down .duck-book {
+  animation: duck-put-book 0.7s ease-in forwards;
+}
+.duck-sparkles {
+  transform-origin: 110px 100px;
+  opacity: 0;
+  animation: duck-sparkle 0.85s ease-out 0.7s 3;
 }
 .roaming {
-  animation: roam 22s ease-in-out infinite alternate;
+  animation: duck-roam 24s linear infinite;
 }
-@keyframes waddle {
+.roaming .duck {
+  animation: duck-direction 24s linear infinite;
+}
+@keyframes duck-breathe {
   50% {
-    transform: translateY(-4px) rotate(3deg);
+    transform: translateY(-2px) rotate(-1deg);
   }
 }
-@keyframes jump {
-  50% {
-    transform: translateY(-15px) rotate(-5deg);
+@keyframes duck-look {
+  20%,
+  75% {
+    transform: rotate(0);
+  }
+  40%,
+  55% {
+    transform: rotate(-5deg);
+  }
+  85% {
+    transform: rotate(3deg);
   }
 }
-@keyframes roam {
-  to {
+@keyframes duck-blink {
+  0%,
+  42%,
+  46%,
+  94%,
+  98%,
+  100% {
+    transform: scaleY(1);
+  }
+  44%,
+  96% {
+    transform: scaleY(0.06);
+  }
+}
+@keyframes duck-step {
+  25% {
+    transform: translate(5px, -6px) rotate(-12deg);
+  }
+  75% {
+    transform: translate(-5px, 0) rotate(8deg);
+  }
+}
+@keyframes duck-step-bob {
+  25%,
+  75% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+@keyframes duck-wing-swing {
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+@keyframes duck-read {
+  25%,
+  70% {
+    transform: rotate(7deg) translateY(2px);
+  }
+  85% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes duck-book-sway {
+  50% {
+    transform: translateY(-2px) rotate(1deg);
+  }
+}
+@keyframes duck-page-turn {
+  0%,
+  78%,
+  100% {
+    transform: scaleX(1);
+  }
+  88% {
+    transform: scaleX(0.08);
+  }
+}
+@keyframes duck-put-book {
+  55% {
+    opacity: 1;
+    transform: translate(15px, 10px) rotate(14deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(25px, 23px) rotate(20deg) scale(0.85);
+  }
+}
+@keyframes duck-cheer {
+  15% {
+    transform: translateY(3px) scale(1.03, 0.97);
+  }
+  42% {
+    transform: translateY(-16px) rotate(-5deg);
+  }
+  70% {
+    transform: translateY(0) scale(1.04, 0.96);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes duck-flap {
+  50% {
+    transform: rotate(55deg);
+  }
+}
+@keyframes duck-happy {
+  45% {
+    transform: rotate(-9deg);
+  }
+}
+@keyframes duck-sparkle {
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scale(1.12);
+  }
+}
+@keyframes duck-roam {
+  0%,
+  100% {
+    left: 10%;
+  }
+  48%,
+  52% {
     left: 68%;
+  }
+}
+@keyframes duck-direction {
+  0%,
+  48% {
+    transform: scaleX(1);
+  }
+  50%,
+  98% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }
