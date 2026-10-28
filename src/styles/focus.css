@@ -213,3 +213,59 @@
     height: 58px;
   }
 }
+
+.custom-timer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 276px;
+  max-width: calc(100% - 24px);
+  margin: 12px auto 0;
+  padding: 10px 12px;
+  border: 1px solid #ffffff80;
+  background: #ffffff60;
+  border-radius: 6px;
+  color: #243f50;
+}
+.custom-timer label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+.custom-timer input {
+  width: 66px;
+  border: 1px solid #a9bdc9;
+  border-radius: 4px;
+  padding: 7px 8px;
+  background: #fffdf4;
+  color: #243f50;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.custom-timer button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  color: white;
+  background: #405f70;
+  font-size: 13px;
+}
+.custom-timer button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.custom-timer small {
+  width: 100%;
+  font-size: 11px;
+}
+.timer-actions .primary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.night .custom-timer {
+  background: #263f56;
+  border-color: #647e91;
+  color: #f3f6f9;
+}

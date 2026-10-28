@@ -7,7 +7,7 @@ import { Dialog } from './components/Dialog';
 import { TaskDialog } from './features/tasks/TaskDialog';
 import type { Task, Status } from './features/tasks/model';
 import { useTimer } from './hooks/useTimer';
-import { appConfig } from './config';
+import { appConfig, sessionReward } from './config';
 export function App() {
   const [view, setView] = useState<View>('workspace');
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -22,12 +22,16 @@ export function App() {
     setPoints((points) => points + amount);
     setCelebrate(true);
   }, []);
-  const completeSession = useCallback(() => {
-    reward(appConfig.rewards.session);
-    setNotice(
-      `Session complete. Take a breath — you earned ${appConfig.rewards.session} points.`,
-    );
-  }, [reward]);
+  const completeSession = useCallback(
+    (seconds: number) => {
+      const earned = sessionReward(seconds);
+      reward(earned);
+      setNotice(
+        `Session complete. Take a breath — you earned ${earned} points.`,
+      );
+    },
+    [reward],
+  );
   const timer = useTimer(completeSession);
   const closeDialog = useCallback(() => setModal(false), []);
   useEffect(() => {
