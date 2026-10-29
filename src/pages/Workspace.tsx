@@ -9,6 +9,7 @@ type Props = {
   onMove: (task: Task, status: Status) => void;
   onDelete: (id: string) => void;
   onAdd: () => void;
+  onEdit: (task: Task) => void;
 };
 export function Workspace({
   tasks,
@@ -16,6 +17,7 @@ export function Workspace({
   onMove,
   onDelete,
   onAdd,
+  onEdit,
 }: Props) {
   const completed = tasks.filter((task) => task.status === 'done').length;
   return (
@@ -38,7 +40,7 @@ export function Workspace({
         tasks={tasks}
         onMove={onMove}
         onDelete={onDelete}
-        onAdd={onAdd}
+        onEdit={onEdit}
       />
       <footer>
         <span>

@@ -1,13 +1,12 @@
-import { Plus } from 'lucide-react';
 import type { Task, Status } from './model';
 import { TaskCard } from './TaskCard';
 type Props = {
   tasks: Task[];
   onMove: (task: Task, status: Status) => void;
   onDelete: (id: string) => void;
-  onAdd: () => void;
+  onEdit: (task: Task) => void;
 };
-export function TaskBoard({ tasks, onMove, onDelete, onAdd }: Props) {
+export function TaskBoard({ tasks, onMove, onDelete, onEdit }: Props) {
   return (
     <section className="board" aria-label="Task board">
       {(['todo', 'doing', 'done'] as Status[]).map((status, i) => (
@@ -28,14 +27,6 @@ export function TaskBoard({ tasks, onMove, onDelete, onAdd }: Props) {
             <span className="count">
               {tasks.filter((t) => t.status === status).length}
             </span>
-            <button
-              aria-label={`Add task to ${status}`}
-              onClick={() => {
-                onAdd();
-              }}
-            >
-              <Plus size={16} />
-            </button>
           </div>
           <div className="task-list">
             {tasks
@@ -44,8 +35,8 @@ export function TaskBoard({ tasks, onMove, onDelete, onAdd }: Props) {
                 <TaskCard
                   key={task.id}
                   task={task}
-                  onMove={onMove}
                   onDelete={onDelete}
+                  onEdit={onEdit}
                 />
               ))}
             {!tasks.some((t) => t.status === status) && (
@@ -58,9 +49,6 @@ export function TaskBoard({ tasks, onMove, onDelete, onAdd }: Props) {
               </div>
             )}
           </div>
-          <button className="add-task" onClick={() => onAdd()}>
-            <Plus size={14} /> Add a task
-          </button>
         </div>
       ))}
     </section>

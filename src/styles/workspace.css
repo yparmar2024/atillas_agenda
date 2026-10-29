@@ -46,22 +46,8 @@
   font-size: 13px;
   color: #7b8794;
 }
-.column-heading button {
-  margin-left: auto;
-  background: transparent;
-  color: #657181;
-  padding: 4px;
-}
 .status-dot {
   display: none;
-}
-.add-task {
-  margin-top: 16px;
-  background: none;
-  color: #657181;
-  font-size: 13px;
-  justify-content: flex-start;
-  padding: 8px 0;
 }
 .empty-column {
   padding: 32px 17px;
@@ -168,9 +154,6 @@ footer span {
   }
   .empty-column {
     min-height: 95px;
-  }
-  .add-task {
-    margin-top: 10px;
   }
   .study-desk {
     margin-top: 28px;

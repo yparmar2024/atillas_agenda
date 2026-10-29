@@ -1,13 +1,13 @@
-import { Check, Sparkles, X } from 'lucide-react';
+import { Check, Pencil, Sparkles, X } from 'lucide-react';
 import { appConfig } from '../../config';
-import type { Task, Status } from './model';
+import type { Task } from './model';
 import '../../styles/tasks.css';
 type Props = {
   task: Task;
-  onMove: (task: Task, status: Status) => void;
+  onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
 };
-export function TaskCard({ task, onMove, onDelete }: Props) {
+export function TaskCard({ task, onEdit, onDelete }: Props) {
   return (
     <article
       className="task"
@@ -19,6 +19,7 @@ export function TaskCard({ task, onMove, onDelete }: Props) {
         {task.subject}
       </div>
       <h4>{task.title}</h4>
+      {task.notes && <p className="task-notes">{task.notes}</p>}
       <div className="task-footer">
         <span>
           {task.rewarded ? (
@@ -31,15 +32,13 @@ export function TaskCard({ task, onMove, onDelete }: Props) {
             </>
           )}
         </span>
-        <select
-          aria-label={`Move ${task.title}`}
-          value={task.status}
-          onChange={(e) => onMove(task, e.target.value as Status)}
+        <button
+          className="edit-task"
+          aria-label={`Edit ${task.title}`}
+          onClick={() => onEdit(task)}
         >
-          <option value="todo">To do</option>
-          <option value="doing">In progress</option>
-          <option value="done">Done</option>
-        </select>
+          <Pencil size={15} />
+        </button>
         <button
           className="delete-task"
           aria-label={`Delete ${task.title}`}
