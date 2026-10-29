@@ -28,6 +28,25 @@ npm run dev
 
 Use `npm run build` to type-check and build for production, and `npm run preview` to preview the build. Run `npm run format` after editing and `npm run format:check` to check formatting.
 
+## Core tests and continuous integration
+
+Use Node.js 22.12 or newer (CI uses Node.js 22) and run `npm test` for the core functional tests. Tests run in Node, without a browser or deployed app. They cover task creation and validation, editing, movement, deletion, one-time task rewards, and session reward calculations. They exercise the task operations used by the app; dialog interactions and the live timer lifecycle are outside this initial coverage.
+
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs on pull requests, pushes, and manual dispatch. Its **Quality checks** job installs locked dependencies, checks formatting, runs core tests, and builds the production bundle, in that order. A failure stops the remaining steps and fails the job. No deployment is configured.
+
+### Require CI before production changes
+
+The workflow alone does not block merges or direct pushes. After it is on the production branch (normally `main`) and has run, configure GitHub repository **Settings → Branches → Add classic branch protection rule**:
+
+1. Target `main` (or the branch used for production).
+2. Enable **Require a pull request before merging**. Review approvals are optional for this CI gate.
+3. Enable **Require status checks to pass before merging**, select **Quality checks** from GitHub Actions, and enable **Require branches to be up to date before merging**.
+4. Enable **Do not allow bypassing the above settings**, including administrators. Keep force pushes and branch deletion disabled.
+
+This prevents changes from entering the protected production branch without passing CI. Branch protection availability depends on the repository's visibility and GitHub plan. Repository administration permission is required; these settings can also be applied through `gh api` after authenticating with `gh auth login`. Check for existing rules before changing them.
+
+When deployment is added, deploy only the protected production branch after successful CI. Manual deployment paths and external hosting integrations need their own enforcement; this workflow does not restrict those paths.
+
 ## About the project
 
 Attila’s Agenda is a team project for SSW555 at Stevens Institute of Technology. Practicing Agile and Scrum is the central goal: building in small increments, reviewing working features, collecting feedback, and improving how the team works together.
