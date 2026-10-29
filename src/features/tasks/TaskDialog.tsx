@@ -3,6 +3,7 @@ import { Check, Plus, X } from 'lucide-react';
 import { appConfig } from '../../config';
 import { Dialog } from '../../components/Dialog';
 import type { Task, Status } from './model';
+import { createTask } from './operations';
 type Props = {
   onCreate: (task: Task) => void;
   onClose: () => void;
@@ -34,14 +35,17 @@ export function TaskDialog({ onCreate, onClose, task }: Props) {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (!title.trim()) return;
-          onCreate({
+          const created = createTask({
             id: task?.id ?? crypto.randomUUID(),
             title: title.trim(),
             subject,
             notes: notes.trim(),
             status,
-            rewarded: task?.rewarded ?? false,
+          });
+          if (!created) return;
+          onCreate({
+            ...created,
+            rewarded: task?.rewarded ?? created.rewarded,
           });
           onClose();
         }}

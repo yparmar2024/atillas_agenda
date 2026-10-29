@@ -8,6 +8,11 @@ import { TaskDialog } from './features/tasks/TaskDialog';
 import type { Task, Status } from './features/tasks/model';
 import { useTimer } from './hooks/useTimer';
 import { appConfig, sessionReward } from './config';
+import {
+  deleteTask,
+  moveTask as moveTaskToStatus,
+  saveTask,
+} from './features/tasks/operations';
 export function App() {
   const [view, setView] = useState<View>('workspace');
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -45,18 +50,9 @@ export function App() {
     return () => clearTimeout(timeout);
   }, [notice]);
   const moveTask = (task: Task, status: Status) => {
-    setTasks((tasks) =>
-      tasks.map((current) =>
-        current.id === task.id
-          ? {
-              ...current,
-              status,
-              rewarded: current.rewarded || status === 'done',
-            }
-          : current,
-      ),
-    );
-    if (status === 'done' && !task.rewarded) reward(appConfig.rewards.task);
+    const result = moveTaskToStatus(tasks, task.id, status);
+    setTasks(result.tasks);
+    if (result.points) reward(result.points);
   };
   return (
     <>
@@ -96,13 +92,7 @@ export function App() {
         <TaskDialog
           task={editingTask}
           onCreate={(task) => {
-            setTasks((tasks) =>
-              editingTask
-                ? tasks.map((current) =>
-                    current.id === task.id ? task : current,
-                  )
-                : [...tasks, { ...task, rewarded: task.status === 'done' }],
-            );
+            setTasks((tasks) => saveTask(tasks, task));
             if (!editingTask && task.status === 'done')
               reward(appConfig.rewards.task);
           }}
@@ -130,9 +120,7 @@ export function App() {
             <button
               className="primary danger"
               onClick={() => {
-                setTasks((tasks) =>
-                  tasks.filter((task) => task.id !== deletingTask.id),
-                );
+                setTasks((tasks) => deleteTask(tasks, deletingTask.id));
                 setDeletingTask(undefined);
               }}
             >
